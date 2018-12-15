@@ -1,40 +1,35 @@
-
 <template>
   <div id="app">
-    <AppNavbar/>
-    <AppBreadcrumbs/>
-    <router-view/>
-    <Notification/>
-    <!-- <AppFooter/> -->
+    <Navbar/>
+    <Notifications/>
+    <div class="container router-container">
+      <router-view/>
+    </div>
+    <AppFooter/>
   </div>
 </template>
 
 <script>
-import AppNavbar from '@/containers/app_navbar'
-import AppBreadcrumbs from '@/containers/app_breadcrumbs'
-import AppFooter from '@/containers/app_footer'
-import Notification from '@/containers/app_notification'
+import Navbar from '@/components/Navbar'
+import AppFooter from '@/components/Footer'
+import Notifications from '@codotype/ui/src/modules/notification/components/Notifications'
 
 export default {
-  name: 'app',
-
-  // Top-Level Application Components
   components: {
-    AppNavbar,
-    AppBreadcrumbs,
+    Navbar,
     AppFooter,
-    Notification
+    Notifications
   },
-
-  // Top-Level page Meta
+  created () {
+    this.$store.dispatch('generator/fetchCollection')
+  },
   metaInfo: {
-    title: 'Loading...', // set a title
-    titleTemplate: 'blazeplate.io - %s', // title is now "blazeplate.io - Loading..."
+    title: 'Loading...',
+    titleTemplate: 'Codotype - %s',
     htmlAttrs: {
       lang: 'en'
     }
   }
-
 }
 </script>
 
@@ -47,8 +42,9 @@ export default {
   body
     height: 100%
 
-  // .container, .container-fluid
-  //   padding-top: 4.5rem
+  .container.router-container
+    padding-top: 6rem
+    margin-bottom: 4rem
 
   #app
     height: 100%

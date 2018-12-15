@@ -1,2 +1,2 @@
-# blazeplate_web_client
-Blazeplate Web Client Application
+# codotype-web
+Codotype Web Client Application
